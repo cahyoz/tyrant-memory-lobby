@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tyrant headpat</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        border: 10px solid white;
+        pointer-events: none;
+        animation: ripple-animation 0.6s ease-out;
+      }
+
+      @keyframes ripple-animation {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        100% {
+          width: 400px;
+          height: 400px;
+          opacity: 0;
+          transform: translate(-50%, -50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <audio id="bgm" src="/public/bgm.mp3" autoplay></audio> -->
+
+    <script type="module" src="/src/main.js"></script>
+    <script src="/src/live2dcubismcore.min.js"></script>
+
+    <script>
+      document.body.addEventListener("mousedown", (e) => {
+        const ripple = document.createElement("div");
+        ripple.className = "ripple";
+
+        const x = e.clientX;
+        const y = e.clientY;
+
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+
+        document.body.appendChild(ripple);
+
+        ripple.addEventListener("animationend", () => {
+          ripple.remove();
+        });
+      });
+    </script>
+
+    <!-- <script>
+      let audio = document.getElementById("bgm");
+      audio.loop = true;
+
+      document.addEventListener(
+        "click",
+        () => {
+          bgm.play().catch((err) => console.log("Audio play failed:", err));
+        },
+        { once: true }
+      ); // only triggers once
+    </script> -->
+  </body>
+</html>

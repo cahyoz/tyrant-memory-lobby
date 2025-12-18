@@ -1,0 +1,23 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "tyrunny_lobby.moc3",
+		"Textures": [
+			"tyrunny_lobby.2048/texture_00.png"
+		],
+		"Physics": "tyrunny_lobby.physics3.json",
+		"DisplayInfo": "tyrunny_lobby.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}
