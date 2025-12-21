@@ -132,12 +132,6 @@ window.PIXI = PIXI;
   // Add this after loading the model to see all parameters
   const paramCount =
     tyrant.internalModel.coreModel.getParameterDefaultValue(22);
-  console.log(
-    "default, max, min",
-    paramCount,
-    tyrant.internalModel.coreModel.getParameterMaximumValue(22),
-    tyrant.internalModel.coreModel.getParameterMinimumValue(22)
-  );
 
   //eye blink
   let timeSinceLastBlink = 0;
@@ -151,7 +145,6 @@ window.PIXI = PIXI;
     tyrant.internalModel.coreModel.getParameterValueById("ParamEyeLOpen");
   let currentBlushValue =
     tyrant.internalModel.coreModel.getParameterValueByIndex(22);
-  console.log("Initial Blush Value:", currentBlushValue);
 
   app.ticker.add((delta) => {
     timeSinceLastBlink += delta * 16.67;
@@ -175,7 +168,6 @@ window.PIXI = PIXI;
     }
 
     const speed = 0.1;
-    console.log("Target Blush Value:", targetBlushValue);
     currentREyeValue += (targetREyeValue - currentREyeValue) * speed;
     currentLEyeValue += (targetLEyeValue - currentLEyeValue) * speed;
     currentBlushValue += (targetBlushValue - currentBlushValue) * speed;
@@ -246,33 +238,45 @@ window.PIXI = PIXI;
 
   // load animation
 
+  // Your original/design screen size
+  const DESIGN_WIDTH = 1920; // adjust to your reference width
+  const DESIGN_HEIGHT = 1080; // adjust to your reference height
+
+  // Current screen size
+  const screenWidth = app.screen.width;
+  const screenHeight = app.screen.height;
+
+  // Scale factors
+  const scaleX = screenWidth / DESIGN_WIDTH;
+  const scaleY = screenHeight / DESIGN_HEIGHT;
+
   const animations = [
     {
-      x: -2800,
-      y: -2100,
+      x: -3800 * scaleX,
+      y: -2100 * scaleY,
       scale: 4,
       hold: 2000,
       instant: true,
-      panX: -2700,
-      panY: -2110,
+      panX: -3700 * scaleX,
+      panY: -2110 * scaleY,
     },
     {
-      x: -2600,
-      y: -1500,
+      x: -3600 * scaleX,
+      y: -1500 * scaleY,
       scale: 3.5,
       hold: 2000,
       instant: true,
-      panX: -2660,
-      panY: -1510,
+      panX: -3660 * scaleX,
+      panY: -1510 * scaleY,
     },
     {
-      x: -2800,
-      y: -1000,
+      x: -3800 * scaleX,
+      y: -1000 * scaleY,
       scale: 3.5,
       hold: 2000,
       instant: true,
-      panX: -2750,
-      panY: -1010,
+      panX: -3750 * scaleX,
+      panY: -1010 * scaleY,
     },
     // Zoom out to full view (SMOOTH)
     { x: 0, y: 0, scale: 1, duration: 2000, instant: false },
